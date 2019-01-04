@@ -16,8 +16,9 @@
 @implementation AViewController
 
 + (void)load {
-    [SeaRouter registerURL:@"A" toHandler:^(NSDictionary * _Nonnull info) {
+    [SeaRouter registerURL:@"app://A" toHandler:^(NSDictionary * _Nonnull info) {
         
+        NSLog(@"A = %@",info);
         AViewController *vc = [[AViewController alloc] init];
         [[SeaRouter keyViewController].navigationController pushViewController:vc animated:YES];
     }];

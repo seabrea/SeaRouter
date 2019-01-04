@@ -7,8 +7,10 @@
 //
 
 #import "SeaRouter.h"
+#import <WebKit/WKWebView.h>
 
-typedef void(^RouterBlock)(NSDictionary *info);
+NSString * const SEAROUTER_URL = @"SeaRouterURL";
+NSString * const SEAROUTER_CUSTOM_WEB_VC = @"app://CustomWebViewController";
 
 @interface SeaRouter()
 
@@ -28,8 +30,19 @@ typedef void(^RouterBlock)(NSDictionary *info);
     [[SeaRouter sharedInstance] openURL:url withParams:params];
 }
 
-+ (UIViewController *)keyViewController {
++ (void)openURL:(NSString *)url {
+    [SeaRouter openURL:url withParams:nil];
+}
+
++ (void)openOtherAPPURL:(NSString *)url {
     
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:nil];
+    }
+}
+
++ (UIViewController *)keyViewController {
+
     UIViewController* currentViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
     
     BOOL runLoopFind = YES;
@@ -84,14 +97,53 @@ typedef void(^RouterBlock)(NSDictionary *info);
 #pragma mark - Private Methods
 
 - (void)registerURL:(NSString *)url toHandler:(RouterBlock)handler {
-    [self.routerMap setObject:handler forKey:url];
+    [self.routerMap setObject:[handler copy] forKey:url];
 }
 
 - (void)openURL:(NSString *)url withParams:(NSDictionary *)params {
+    [self parsingURL:url withParams:params];
+}
+
+- (void)parsingURL:(NSString *)url withParams:(NSDictionary *)params {
     
+    if([url rangeOfString:@"://"].location == NSNotFound) {
+        // 不符合路由格式
+        return;
+    }
+    
+    
+    
+    if([url hasPrefix:@"http"] ||
+       [url hasPrefix:@"https"]) {
+        // 跳转Web界面
+        RouterBlock webBlock = [self.routerMap objectForKey:SEAROUTER_CUSTOM_WEB_VC];
+        if(!webBlock) {
+            [[SeaRouter keyViewController].navigationController pushViewController:[self makeWebController:[NSURL URLWithString:url]] animated:YES];
+        }
+        else {
+            webBlock(@{SEAROUTER_URL:url});
+        }
+        return;
+    }
+    
+    // 取出已注册的URL中的Block对象
     RouterBlock handlerBlock = [self.routerMap objectForKey:url];
+    
     NSMutableDictionary *info = params ? [[NSMutableDictionary alloc] initWithDictionary:params] : @{}.mutableCopy;
-    handlerBlock(info);
+    [info setObject:url forKey:SEAROUTER_URL];
+    handlerBlock(info.copy);
+}
+
+- (UIViewController *)makeWebController:(NSURL *)URL {
+    
+    UIViewController *webVC = [[UIViewController alloc] init];
+    webVC.view.backgroundColor = [UIColor whiteColor];
+    
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:webVC.view.bounds];
+    [webView loadRequest:[NSURLRequest requestWithURL:URL]];
+    [webVC.view addSubview:webView];
+    
+    return webVC;
 }
 
 

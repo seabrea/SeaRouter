@@ -20,8 +20,9 @@
 
 + (void)load {
     
-    [SeaRouter registerURL:@"C" toHandler:^(NSDictionary * _Nonnull info) {
+    [SeaRouter registerURL:@"app://C" toHandler:^(NSDictionary * _Nonnull info) {
         
+        NSLog(@"C = %@",info);
         CViewController *vc = [[CViewController alloc] init];
         vc.inputBlock = info[@"Block"];
         [[SeaRouter keyViewController].navigationController pushViewController:vc animated:YES];

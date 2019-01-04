@@ -27,10 +27,10 @@
     
     [self.view endEditing:YES];
     if(sender.tag == 10000) {
-        [SeaRouter openURL:@"A" withParams:@{}];
+        [SeaRouter openURL:@"app://A" withParams:@{}];
     }
     else if(sender.tag == 10001) {
-        [SeaRouter openURL:@"B" withParams:@{@"code":self.inputView.text}];
+        [SeaRouter openURL:@"app://B" withParams:@{@"code":self.inputView.text}];
     }
     else if(sender.tag == 10002) {
         
@@ -38,7 +38,10 @@
             self.fromCvalueLable.text = content;
         };
         
-        [SeaRouter openURL:@"C" withParams:@{@"Block":getCvalueBlock}];
+        [SeaRouter openURL:@"app://C" withParams:@{@"Block":getCvalueBlock}];
+    }
+    else if(sender.tag == 10003) {
+        [SeaRouter openURL:@"https://m.weibo.cn"];
     }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		941FD50121DFBEF000DE3412 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 941FD4FF21DFBEF000DE3412 /* WebViewController.m */; };
+		941FD50221DFBEF000DE3412 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 941FD50021DFBEF000DE3412 /* WebViewController.xib */; };
 		C404784B21DF08350046C778 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C404784A21DF08350046C778 /* AppDelegate.m */; };
 		C404784E21DF08350046C778 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C404784D21DF08350046C778 /* ViewController.m */; };
 		C404785121DF08350046C778 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C404784F21DF08350046C778 /* Main.storyboard */; };
@@ -23,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		941FD4FE21DFBEF000DE3412 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		941FD4FF21DFBEF000DE3412 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		941FD50021DFBEF000DE3412 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		C404784621DF08350046C778 /* SeaRouterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeaRouterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C404784921DF08350046C778 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C404784A21DF08350046C778 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -112,6 +117,9 @@
 				C404786E21DF51C70046C778 /* CViewController.h */,
 				C404786F21DF51C70046C778 /* CViewController.m */,
 				C404787021DF51C70046C778 /* CViewController.xib */,
+				941FD4FE21DFBEF000DE3412 /* WebViewController.h */,
+				941FD4FF21DFBEF000DE3412 /* WebViewController.m */,
+				941FD50021DFBEF000DE3412 /* WebViewController.xib */,
 			);
 			path = DemoViewControllers;
 			sourceTree = "<group>";
@@ -176,6 +184,7 @@
 				C404787221DF51C70046C778 /* CViewController.xib in Resources */,
 				C404786A21DF087A0046C778 /* BViewController.xib in Resources */,
 				C404786521DF086D0046C778 /* AViewController.xib in Resources */,
+				941FD50221DFBEF000DE3412 /* WebViewController.xib in Resources */,
 				C404785621DF08400046C778 /* LaunchScreen.storyboard in Resources */,
 				C404785321DF08400046C778 /* Assets.xcassets in Resources */,
 				C404785121DF08350046C778 /* Main.storyboard in Resources */,
@@ -192,6 +201,7 @@
 				C404786D21DF09350046C778 /* SeaRouter.m in Sources */,
 				C404786421DF086D0046C778 /* AViewController.m in Sources */,
 				C404784E21DF08350046C778 /* ViewController.m in Sources */,
+				941FD50121DFBEF000DE3412 /* WebViewController.m in Sources */,
 				C404785921DF08400046C778 /* main.m in Sources */,
 				C404786921DF087A0046C778 /* BViewController.m in Sources */,
 				C404784B21DF08350046C778 /* AppDelegate.m in Sources */,

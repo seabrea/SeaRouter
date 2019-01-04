@@ -19,12 +19,12 @@
 @implementation BViewController
 
 + (void)load {
-    [SeaRouter registerURL:@"B" toHandler:^(NSDictionary * _Nonnull info) {
+    [SeaRouter registerURL:@"app://B" toHandler:^(NSDictionary * _Nonnull info) {
         
+        NSLog(@"B = %@",info);
         BViewController *vc = [[BViewController alloc] init];
         [[SeaRouter keyViewController].navigationController pushViewController:vc animated:YES];
         vc.code = [info[@"code"] description];
-        NSLog(@"Dic = %@",info);
     }];
 }
 

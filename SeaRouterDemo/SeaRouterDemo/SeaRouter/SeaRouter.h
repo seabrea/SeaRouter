@@ -10,15 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSString * const SeaRouterKeyViewController;
-
-typedef void(^RouterBlock)(NSDictionary *info);
-
 @interface SeaRouter : NSObject
 
-+ (void)registerURL:(NSString *)url toHandler:(RouterBlock)handler;
++ (void)registerURL:(NSString *)url toHandler:(void(^)(NSDictionary *info))handler;
 
 + (void)openURL:(NSString *)url withParams:(NSDictionary *)params;
+
++ (UIViewController *)keyViewController;
 
 @end
 

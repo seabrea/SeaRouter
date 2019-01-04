@@ -8,11 +8,11 @@
 
 #import "SeaRouter.h"
 
-NSString * const SeaRouterKeyViewController = @"keyViewController";
+typedef void(^RouterBlock)(NSDictionary *info);
 
 @interface SeaRouter()
 
-@property (nonatomic, strong) NSMutableDictionary *routerMap;
+@property (nonatomic, strong) NSMapTable *routerMap;
 
 @end
 
@@ -28,6 +28,42 @@ NSString * const SeaRouterKeyViewController = @"keyViewController";
     [[SeaRouter sharedInstance] openURL:url withParams:params];
 }
 
++ (UIViewController *)keyViewController {
+    
+    UIViewController* currentViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
+    
+    BOOL runLoopFind = YES;
+    while (runLoopFind) {
+        if (currentViewController.presentedViewController) {
+            
+            currentViewController = currentViewController.presentedViewController;
+        }
+        else if ([currentViewController isKindOfClass:[UINavigationController class]]) {
+            
+            UINavigationController* navigationController = (UINavigationController* )currentViewController;
+            currentViewController = [navigationController.childViewControllers lastObject];
+        }
+        else if ([currentViewController isKindOfClass:[UITabBarController class]]) {
+            
+            UITabBarController* tabBarController = (UITabBarController* )currentViewController;
+            currentViewController = tabBarController.selectedViewController;
+        }
+        else {
+            
+            NSUInteger childViewControllerCount = currentViewController.childViewControllers.count;
+            if (childViewControllerCount > 0) {
+                
+                currentViewController = currentViewController.childViewControllers.lastObject;
+                return currentViewController;
+            }
+            else {
+                
+                return currentViewController;
+            }
+        }
+    }
+    return currentViewController;
+}
 
 #pragma mark - Lify Cycle
 
@@ -48,7 +84,6 @@ NSString * const SeaRouterKeyViewController = @"keyViewController";
 #pragma mark - Private Methods
 
 - (void)registerURL:(NSString *)url toHandler:(RouterBlock)handler {
-    
     [self.routerMap setObject:handler forKey:url];
 }
 
@@ -62,9 +97,9 @@ NSString * const SeaRouterKeyViewController = @"keyViewController";
 
 #pragma mark - Getter
 
-- (NSMutableDictionary *)routerMap {
+- (NSMapTable *)routerMap {
     if (!_routerMap) {
-        _routerMap = [[NSMutableDictionary alloc] init];
+        _routerMap = [NSMapTable strongToWeakObjectsMapTable];
     }
     return _routerMap;
 }

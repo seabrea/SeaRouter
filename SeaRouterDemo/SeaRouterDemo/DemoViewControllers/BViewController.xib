@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BViewController">
             <connections>
+                <outlet property="showContentLabel" destination="Lma-zG-SS8" id="xI2-Ow-Ohj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,11 +27,19 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="传值：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lma-zG-SS8">
+                    <rect key="frame" x="133" y="405" width="109" height="43"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.86274509799999999" green="0.23529411759999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="Lma-zG-SS8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="0ed-x6-5f5"/>
                 <constraint firstItem="e9f-Eu-lVA" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="gmB-r4-0fr"/>
                 <constraint firstItem="e9f-Eu-lVA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hL5-tz-VNB"/>
+                <constraint firstItem="Lma-zG-SS8" firstAttribute="top" secondItem="e9f-Eu-lVA" secondAttribute="bottom" constant="50" id="hj3-8y-g4U"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>

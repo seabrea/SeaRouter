@@ -11,6 +11,9 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *inputView;
+@property (weak, nonatomic) IBOutlet UILabel *fromCvalueLable;
+
 @end
 
 @implementation ViewController
@@ -22,11 +25,20 @@
 
 - (IBAction)pushVCBtn:(UIButton *)sender {
     
-    if([sender.titleLabel.text isEqualToString:@"A"]) {
-        [SeaRouter openURL:@"A" withParams:nil];
+    [self.view endEditing:YES];
+    if(sender.tag == 10000) {
+        [SeaRouter openURL:@"A" withParams:@{}];
     }
-    else if([sender.titleLabel.text isEqualToString:@"B"]) {
-        [SeaRouter openURL:@"B" withParams:@{@"code":@"123"}];
+    else if(sender.tag == 10001) {
+        [SeaRouter openURL:@"B" withParams:@{@"code":self.inputView.text}];
+    }
+    else if(sender.tag == 10002) {
+        
+        void (^getCvalueBlock)(NSString *content) = ^(NSString *content){
+            self.fromCvalueLable.text = content;
+        };
+        
+        [SeaRouter openURL:@"C" withParams:@{@"Block":getCvalueBlock}];
     }
 }
 

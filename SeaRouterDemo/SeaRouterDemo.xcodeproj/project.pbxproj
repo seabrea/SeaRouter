@@ -18,6 +18,8 @@
 		C404786921DF087A0046C778 /* BViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C404786721DF087A0046C778 /* BViewController.m */; };
 		C404786A21DF087A0046C778 /* BViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C404786821DF087A0046C778 /* BViewController.xib */; };
 		C404786D21DF09350046C778 /* SeaRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C404786C21DF09350046C778 /* SeaRouter.m */; };
+		C404787121DF51C70046C778 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C404786F21DF51C70046C778 /* CViewController.m */; };
+		C404787221DF51C70046C778 /* CViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C404787021DF51C70046C778 /* CViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,9 @@
 		C404786821DF087A0046C778 /* BViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BViewController.xib; sourceTree = "<group>"; };
 		C404786B21DF09350046C778 /* SeaRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeaRouter.h; sourceTree = "<group>"; };
 		C404786C21DF09350046C778 /* SeaRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeaRouter.m; sourceTree = "<group>"; };
+		C404786E21DF51C70046C778 /* CViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CViewController.h; sourceTree = "<group>"; };
+		C404786F21DF51C70046C778 /* CViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CViewController.m; sourceTree = "<group>"; };
+		C404787021DF51C70046C778 /* CViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +109,9 @@
 				C404786621DF087A0046C778 /* BViewController.h */,
 				C404786721DF087A0046C778 /* BViewController.m */,
 				C404786821DF087A0046C778 /* BViewController.xib */,
+				C404786E21DF51C70046C778 /* CViewController.h */,
+				C404786F21DF51C70046C778 /* CViewController.m */,
+				C404787021DF51C70046C778 /* CViewController.xib */,
 			);
 			path = DemoViewControllers;
 			sourceTree = "<group>";
@@ -165,6 +173,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C404787221DF51C70046C778 /* CViewController.xib in Resources */,
 				C404786A21DF087A0046C778 /* BViewController.xib in Resources */,
 				C404786521DF086D0046C778 /* AViewController.xib in Resources */,
 				C404785621DF08400046C778 /* LaunchScreen.storyboard in Resources */,
@@ -186,6 +195,7 @@
 				C404785921DF08400046C778 /* main.m in Sources */,
 				C404786921DF087A0046C778 /* BViewController.m in Sources */,
 				C404784B21DF08350046C778 /* AppDelegate.m in Sources */,
+				C404787121DF51C70046C778 /* CViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

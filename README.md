@@ -1,4 +1,4 @@
-![LOGO](https://s2.ax1x.com/2019/01/05/F7UEB4.png)
+![LOGO](https://raw.githubusercontent.com/seabrea/SeaRouter/master/SeaRouter.png)
 
 # SeaRouter
 

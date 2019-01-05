@@ -1,8 +1,4 @@
-TODO:
-项目还在完善中，现在只完成了APP内的跳转。后面会加入APP之间和URL的跳转。
-
-
-
+![LOGO](https://s2.ax1x.com/2019/01/05/F7UEB4.png)
 
 # SeaRouter
 
@@ -21,6 +17,62 @@ SeaRouter是一个简洁的 iOS Router。
 具体使用可参考Demo项目
 
 SeaRouter主要用于iOS中页面跳转，用于对高耦合的控制器之间的解耦。
+
+首先在需要响应的控制器中注册
+
+```
+/**
+ * AViewController.m
+ */
++ (void)load {
+    [SeaRouter registerURL:@"app://A" toHandler:^(NSDictionary * _Nonnull info) {
+        
+        AViewController *vc = [[AViewController alloc] init];
+        [[SeaRouter keyViewController].navigationController pushViewController:vc animated:YES];
+    }];
+}
+```
+
+之后在其他控制器中可以直接使用URL跳转对应的控制器
+
+```
+/**
+ * 路由跳转
+ *
+ * @param  url    访问路径
+ * @param  params 传递给跳转对象的数据
+ */
+[SeaRouter openURL:@"app://B" withParams:@{@"code":@"123"}];
+```
+
+在不需要传值的时候也可以直接用  
+
+```
++ (void)openURL:(NSString *)url;
+```
+
+也可以直接使用SeaRouter打开一个 Web URL
+
+```
+[SeaRouter openURL:@"https://m.weibo.cn"];
+```
+
+如果你没有先注册好显示用的自定义WebController，那么SeaRouter会自定打开一个默认的控制器用于显示Web内容。
+
+如果你需要自定义一个Web控制器，请使用SeaRouter提供的`SEAROUTER_CUSTOM_WEB_VC `作为注册URL
+
+```
+[SeaRouter registerURL:SEAROUTER_CUSTOM_WEB_VC toHandler:^(NSDictionary *info) {
+        
+        WebViewController *webvc = [[WebViewController alloc] init];
+        webvc.url = info[SEAROUTER_URL];
+        [[SeaRouter keyViewController].navigationController pushViewController:webvc animated:YES];
+    }];
+```
+
+其中`SEAROUTER_URL`也是SeaRouter提供的字符串，作为`info`的Key值.
+
+SeaRouter提供打开Web的原因是:方便线上紧急处理有bug的相关页面，可以定制一张包含所有APP内跳转URL信息的表，由服务器提供，当线上APP某个模块出现致命bug的时候，可以让服务端修改这个表，将对应的URL改为一个暂时替用的WebURL，这样用户打开APP的时候，进入相关模块将不会跳转入有bug的页面，而是直接打开一个没有bug的web的页面。
 
 ## Author
 

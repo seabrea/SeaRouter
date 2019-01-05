@@ -43,6 +43,9 @@
     else if(sender.tag == 10003) {
         [SeaRouter openURL:@"https://m.weibo.cn"];
     }
+    else if(sender.tag == 10004) {
+        [SeaRouter openOtherAPPURL:@"photos-redirect://"];
+    }
 }
 
 @end

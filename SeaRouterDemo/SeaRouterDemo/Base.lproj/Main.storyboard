@@ -97,11 +97,25 @@
                                     <action selector="pushVCBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dUb-JT-Flf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="10004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bde-e7-vLg" userLabel="E">
+                                <rect key="frame" x="62.5" y="529" width="250" height="60"/>
+                                <color key="backgroundColor" red="0.97647058819999999" green="0.62352941179999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="iW0-Ju-Kya"/>
+                                    <constraint firstAttribute="height" constant="60" id="o9a-sV-gEM"/>
+                                </constraints>
+                                <state key="normal" title="跳转到系统相册"/>
+                                <connections>
+                                    <action selector="pushVCBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pks-QJ-tjY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="22j-j6-mkE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="8gU-s6-zE9"/>
+                            <constraint firstItem="bde-e7-vLg" firstAttribute="top" secondItem="EpT-Fp-PmH" secondAttribute="bottom" constant="10" id="9ie-3O-qXl"/>
                             <constraint firstItem="eOD-gT-bBR" firstAttribute="top" secondItem="KIh-rB-HzR" secondAttribute="bottom" constant="5" id="Et5-jI-fIT"/>
+                            <constraint firstItem="bde-e7-vLg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GgM-Zs-HoH"/>
                             <constraint firstItem="sii-Gb-vX5" firstAttribute="top" secondItem="eOD-gT-bBR" secondAttribute="bottom" constant="50" id="dVM-ee-J1h"/>
                             <constraint firstItem="KIh-rB-HzR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i0J-Sc-y8j"/>
                             <constraint firstItem="slR-aO-ydT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jS1-Tg-S0f"/>

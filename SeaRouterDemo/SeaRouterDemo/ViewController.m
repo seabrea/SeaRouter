@@ -27,7 +27,7 @@
     
     [self.view endEditing:YES];
     if(sender.tag == 10000) {
-        [SeaRouter openURL:@"app://A" withParams:@{}];
+        [SeaRouter openURL:@"app://A"];
     }
     else if(sender.tag == 10001) {
         [SeaRouter openURL:@"app://B" withParams:@{@"code":self.inputView.text}];

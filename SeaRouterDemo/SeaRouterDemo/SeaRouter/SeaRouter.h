@@ -10,6 +10,8 @@
 
 // info信息中URL值的KEY
 extern NSString * const SEAROUTER_URL;
+// info信息中获取当前控制器的KEY
+extern NSString * const SEAROUTER_KEYVIEWCONTROLLER;
 // 自定义Web控制器的lURL地址,注册自定义Web控制器的URL必须是这个固定URL
 extern NSString * const SEAROUTER_CUSTOM_WEB_VC;
 
@@ -46,10 +48,5 @@ typedef void(^RouterBlock)(NSDictionary *info);
  * @param  url    访问路径
  */
 + (void)openOtherAPPURL:(NSString *)url;
-
-/**
- * 方便获取当前的控制器
- */
-+ (UIViewController *)keyViewController;
 
 @end

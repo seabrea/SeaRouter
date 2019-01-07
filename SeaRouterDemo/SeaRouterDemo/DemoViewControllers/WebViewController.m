@@ -25,7 +25,8 @@
         
         WebViewController *webvc = [[WebViewController alloc] init];
         webvc.url = info[SEAROUTER_URL];
-        [[SeaRouter keyViewController].navigationController pushViewController:webvc animated:YES];
+        UINavigationController *navi = ((UIViewController *)info[SEAROUTER_KEYVIEWCONTROLLER]).navigationController;
+        [navi pushViewController:webvc animated:YES];
     }];
 }
 

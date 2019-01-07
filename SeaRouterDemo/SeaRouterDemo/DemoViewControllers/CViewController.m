@@ -25,7 +25,8 @@
         NSLog(@"C = %@",info);
         CViewController *vc = [[CViewController alloc] init];
         vc.inputBlock = info[@"Block"];
-        [[SeaRouter keyViewController].navigationController pushViewController:vc animated:YES];
+        UINavigationController *navi = ((UIViewController *)info[SEAROUTER_KEYVIEWCONTROLLER]).navigationController;
+        [navi pushViewController:vc animated:YES];
     }];
 }
 

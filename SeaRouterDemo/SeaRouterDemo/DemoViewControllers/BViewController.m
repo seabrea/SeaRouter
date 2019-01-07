@@ -23,7 +23,8 @@
         
         NSLog(@"B = %@",info);
         BViewController *vc = [[BViewController alloc] init];
-        [[SeaRouter keyViewController].navigationController pushViewController:vc animated:YES];
+        UINavigationController *navi = ((UIViewController *)info[SEAROUTER_KEYVIEWCONTROLLER]).navigationController;
+        [navi pushViewController:vc animated:YES];
         vc.code = [info[@"code"] description];
     }];
 }

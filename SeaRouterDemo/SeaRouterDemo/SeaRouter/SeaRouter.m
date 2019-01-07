@@ -14,8 +14,8 @@ NSString * const SEAROUTER_KEYVIEWCONTROLLER = @"SeaRouterKeyViewController";
 NSString * const SEAROUTER_CUSTOM_WEB_VC = @"app://CustomWebViewController";
 
 @interface SeaRouter()
-
-@property (nonatomic, strong) NSMapTable *routerMap;
+// 储存 URL和Block 映射关系的全局字典
+@property (nonatomic, strong) NSMutableDictionary *routerMap;
 
 @end
 
@@ -27,18 +27,23 @@ NSString * const SEAROUTER_CUSTOM_WEB_VC = @"app://CustomWebViewController";
     [[SeaRouter sharedInstance] registerURL:url toHandler:handler];
 }
 
-+ (void)openURL:(NSString *)url withParams:(NSDictionary *)params {
-    [[SeaRouter sharedInstance] openURL:url withParams:params];
++ (id)openURL:(NSString *)url withParams:(NSDictionary *)params {
+    return [[SeaRouter sharedInstance] openURL:url withParams:params];
 }
 
-+ (void)openURL:(NSString *)url {
-    [SeaRouter openURL:url withParams:nil];
++ (id)openURL:(NSString *)url {
+    return [SeaRouter openURL:url withParams:nil];
 }
 
 + (void)openOtherAPPURL:(NSString *)url {
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:nil];
+        if (@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:nil];
+        }
+        else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        }
     }
 }
 
@@ -64,21 +69,21 @@ NSString * const SEAROUTER_CUSTOM_WEB_VC = @"app://CustomWebViewController";
     [self.routerMap setObject:[handler copy] forKey:url];
 }
 
-- (void)openURL:(NSString *)url withParams:(NSDictionary *)params {
+- (id)openURL:(NSString *)url withParams:(NSDictionary *)params {
     
     UIViewController *keyVC = [self keyViewController];
     
     NSMutableDictionary *newParams = params ? [[NSMutableDictionary alloc] initWithDictionary:params] : @{}.mutableCopy;
     newParams[SEAROUTER_KEYVIEWCONTROLLER] = keyVC;
     
-    [self parsingURL:url withParams:newParams];
+    return [self parsingURL:url withParams:newParams];
 }
 
-- (void)parsingURL:(NSString *)url withParams:(NSMutableDictionary *)params {
+- (id)parsingURL:(NSString *)url withParams:(NSMutableDictionary *)params {
     
     if([url rangeOfString:@"://"].location == NSNotFound) {
         // 不符合路由格式
-        return;
+        return nil;
     }
     
     if([url hasPrefix:@"http"] ||
@@ -92,14 +97,17 @@ NSString * const SEAROUTER_CUSTOM_WEB_VC = @"app://CustomWebViewController";
             params[SEAROUTER_URL] = url;
             webBlock(params.copy);
         }
-        return;
+        return nil;
     }
     
     // 取出已注册的URL中的Block对象
     RouterBlock handlerBlock = [self.routerMap objectForKey:url];
+    if(!handlerBlock) {
+        return nil;
+    }
     
     [params setObject:url forKey:SEAROUTER_URL];
-    handlerBlock(params.copy);
+    return handlerBlock(params.copy);
 }
 
 - (UIViewController *)makeWebController:(NSURL *)URL {
@@ -154,9 +162,9 @@ NSString * const SEAROUTER_CUSTOM_WEB_VC = @"app://CustomWebViewController";
 
 #pragma mark - Getter
 
-- (NSMapTable *)routerMap {
+- (NSMutableDictionary *)routerMap {
     if (!_routerMap) {
-        _routerMap = [NSMapTable strongToWeakObjectsMapTable];
+        _routerMap = [[NSMutableDictionary alloc] init];
     }
     return _routerMap;
 }

@@ -15,7 +15,7 @@ extern NSString * const SEAROUTER_KEYVIEWCONTROLLER;
 // 自定义Web控制器的lURL地址,注册自定义Web控制器的URL必须是这个固定URL
 extern NSString * const SEAROUTER_CUSTOM_WEB_VC;
 
-typedef void(^RouterBlock)(NSDictionary *info);
+typedef id(^RouterBlock)(NSDictionary *info);
 
 @interface SeaRouter : NSObject
 
@@ -25,22 +25,24 @@ typedef void(^RouterBlock)(NSDictionary *info);
  * @param  url     注册URL
  * @param  handler 保存的Block对象
  */
-+ (void)registerURL:(NSString *)url toHandler:(void(^)(NSDictionary *info))handler;
++ (void)registerURL:(NSString *)url toHandler:(id(^)(NSDictionary *info))handler;
 
 /**
  * 路由访问
  *
  * @param  url    访问路径
  * @param  params 传入的参数
+ * @return id     返回注册Block中return的对象
  */
-+ (void)openURL:(NSString *)url withParams:(NSDictionary *)params;
++ (id)openURL:(NSString *)url withParams:(NSDictionary *)params;
 
 /**
  * 路由访问
  *
  * @param  url    访问路径
+ * @return id     返回注册Block中return的对象
  */
-+ (void)openURL:(NSString *)url;
++ (id)openURL:(NSString *)url;
 
 /**
  * 跨APP跳转
@@ -50,3 +52,4 @@ typedef void(^RouterBlock)(NSDictionary *info);
 + (void)openOtherAPPURL:(NSString *)url;
 
 @end
+

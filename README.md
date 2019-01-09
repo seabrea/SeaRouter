@@ -5,12 +5,18 @@
 ![](https://img.shields.io/badge/platform-iOS%209%2B-orange.svg)
 ![](https://img.shields.io/badge/language-objective--c-blue.svg)
 ![](https://img.shields.io/badge/license-MIT-ff69b4.svg)
+[![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-green.svg?style=flat)](https://cocoapods.org)
 
 SeaRouter是一个简洁的 iOS Router。
 
 ## Demo
 
 [Demo项目](https://github.com/seabrea/SeaRouter)
+
+## Installation
+支持Cocoapods:
+
+`pod 'SeaRouter'`
 
 ## Usage
 

@@ -88,4 +88,4 @@ SeaRouter提供打开Web的原因是:方便线上紧急处理有bug的相关页�
 
 ## License
 
-SeaNativeHUD is available under the MIT license. See the LICENSE file for more info.
+SeaRouter is available under the MIT license. See the LICENSE file for more info.
